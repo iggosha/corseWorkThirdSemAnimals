@@ -18,6 +18,7 @@ public class doAnimals {
         System.out.println("7. Завершить работу программы");
         numChoiceMenu = inputNumInt();
         switch (numChoiceMenu) {
+            //Добавление
             case 1:
                 System.out.println("Выберите группу животных для добавления: ");
                 System.out.println("1. Птицы");
@@ -53,18 +54,25 @@ public class doAnimals {
                 }
                 showMenu();
                 break;
+            //Удаление
             case 2:
                 break;
+            //Изменение параметров
             case 3:
                 break;
+            //Показать животных
             case 4:
                 break;
+            //Сохранить в XML
             case 5:
                 break;
+            //Прочитать XML
             case 6:
                 break;
+            //Завершить программу
             case 7:
                 break;
+            //Неправильный ввод
             default: {
                 showMenu();
                 break;
@@ -80,8 +88,9 @@ public class doAnimals {
         double size = inputNumDouble();
         System.out.println("Введите хищность птицы (да/нет): ");
         String $predatory = read.nextLine();
-        Bird.birds.add(new Bird(name, size, $predatory));
-        System.out.println("Добавлена птица с параметрами: " + name + " " + size + " " + $predatory);
+        Bird bird = new Bird(name, size, $predatory);
+        Bird.birds.add(bird);
+        System.out.println("Добавлена птица с параметрами:\n"  + bird);
     }
 
     public void addMammal() {
@@ -92,8 +101,9 @@ public class doAnimals {
         double size = inputNumDouble();
         System.out.println("Введите хищность млекопитающего (да/нет): ");
         String $predatory = read.nextLine();
-        Mammal.mammals.add(new Mammal(name, size, $predatory));
-        System.out.println("Добавлено млекопитающее с параметрами: " + name + " " + size + " " + $predatory);
+        Mammal mammal = new Mammal(name, size, $predatory);
+        Mammal.mammals.add(mammal);
+        System.out.println("Добавлено млекопитающее с параметрами:\n" + mammal);
     }
 
     public void addReptile() {
@@ -104,8 +114,9 @@ public class doAnimals {
         double size = inputNumDouble();
         System.out.println("Введите хищность пресмыкающегося (рептилии) (да/нет): ");
         String $predatory = read.nextLine();
-        Reptile.reptiles.add(new Reptile(name, size, $predatory));
-        System.out.println("Добавлено пресмыкающееся(рептилия) с параметрами:" + name + " " + size + " " + $predatory);
+        Reptile reptile = new Reptile(name, size, $predatory);
+        Reptile.reptiles.add(reptile);
+        System.out.println("Добавлено пресмыкающееся(рептилия) с параметрами:\n" + reptile);
     }
 
     public void addAmphibian() {
@@ -116,8 +127,9 @@ public class doAnimals {
         double size = inputNumDouble();
         System.out.println("Введите хищность земноводного (амфибии) (да/нет): ");
         String $predatory = read.nextLine();
-        Amphibian.amphibians.add(new Amphibian(name, size, $predatory));
-        System.out.println("Добавлено земноводного (амфибия) с параметрами: " + name + " " + size + " " + $predatory);
+        Amphibian amphibian = new Amphibian(name, size, $predatory);
+        Amphibian.amphibians.add(amphibian);
+        System.out.println("Добавлено земноводное (амфибия) с параметрами:\n" + amphibian);
     }
 
     public void addFish() {
@@ -128,33 +140,35 @@ public class doAnimals {
         double size = inputNumDouble();
         System.out.println("Введите хищность рыбы (да/нет): ");
         String $predatory = read.nextLine();
-        Fish.fish.add(new Fish(name, size, $predatory));
-        System.out.println("Добавлена рыбы с параметрами: " + name + " " + size + " " + $predatory);
+        Fish fish = (new Fish(name, size, $predatory));
+        Fish.fish.add(fish);
+        System.out.println("Добавлена рыба с параметрами:\n" + fish);
     }
-
-    public double inputNumDouble(){
-        double size;
+    public static double inputNumDouble(){
+        double numDouble;
         try {
             if (read.hasNextDouble()){
-                size = read.nextDouble();
+                numDouble = read.nextDouble();
                 read.nextLine();
             }
             else throw new InputMismatchException("!!! Неправильный ввод числа !!!");
         } catch (InputMismatchException e) {
             read.nextLine();
             System.out.println("!!! Неправильный ввод числа !!!");
-            return 0;
+            System.out.println("Введите заново: ");
+            read.nextLine();
+            numDouble = inputNumDouble();
         }
-        return size;
+        return numDouble;
     }
 
-    public int inputNumInt(){
+    public static int inputNumInt(){
         int numInt;
         try {
-            if (read.hasNextInt()){
-                numInt = read.nextInt();
+            numInt = read.nextInt();
+            if(read.hasNextLine()){
+                read.skip("");
             }
-            else throw new InputMismatchException("!!! Неправильный ввод числа !!!");
         } catch (InputMismatchException e) {
             read.nextLine();
             System.out.println("!!! Неправильный ввод числа !!!");

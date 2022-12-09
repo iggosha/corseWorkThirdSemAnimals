@@ -14,7 +14,7 @@ public abstract class Animals {
     public Animals(String name, double sizeCentimeter, String $predatory) {
         this.name = name;
         this.sizeCentimeter = sizeCentimeter;
-
+        this.$predatory = $predatory;
         try {
             if ($predatory.equals("Да") || $predatory.equals("да")) this.predatory = true;
             else if ($predatory.equals("Нет")|| $predatory.equals("нет")) this.predatory = false;
@@ -23,7 +23,6 @@ public abstract class Animals {
         catch (IllegalArgumentException e){
             System.out.println("Введённый параметр хищничества не соответствует да/нет");
             System.out.println("Измените параметр с помощью команды меню №3");
-
         }
     }
 
@@ -106,7 +105,7 @@ public abstract class Animals {
 
     @Override
     public String toString() {
-        return "Название: " + name + "\nРазмер животного, см: " + sizeCentimeter + "\nХищное: " + $predatory;
+        return "Название: " + name + " Размер животного, см: " + sizeCentimeter + " Хищное: " + $predatory;
     }
 }
 
