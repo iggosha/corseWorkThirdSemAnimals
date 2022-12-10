@@ -8,13 +8,13 @@ public class doAnimals {
     int numChoiceMenu, numChoiceGroup;
 
     public void showMenu() {
-        System.out.println("Введите команду: ");
+        System.out.println("\nВведите команду: ");
         System.out.println("1. Добавить животное");
         System.out.println("2. Удалить животное");
         System.out.println("3. Изменить параметры животного");
-        System.out.println("4. Выбрать группу животных для отображения");
-        System.out.println("5. Сохранить в XML");
-        System.out.println("6. Читать XML");
+        System.out.println("4. Отобразить животных");
+        System.out.println("5. Сохранить данные в XML");
+        System.out.println("6. Открыть данные из XML");
         System.out.println("7. Завершить работу программы");
         numChoiceMenu = inputNumInt();
         switch (numChoiceMenu) {
@@ -137,7 +137,7 @@ public class doAnimals {
                 System.out.println("5. Рыбы");
                 System.out.println("6. Все");
                 numChoiceGroup = inputNumInt();
-                System.out.println("Режим изменения параметров животного");
+                System.out.println("Режим вывода животных");
                 switch (numChoiceGroup) {
                     case 1: {
                         displayBird();
@@ -159,8 +159,7 @@ public class doAnimals {
                         displayFish();
                         break;
                     }
-                    case 6:
-                    {
+                    case 6: {
                         displayAll();
                         break;
                     }
@@ -217,13 +216,13 @@ public class doAnimals {
         read.nextLine();
         System.out.println("Введите название пресмыкающегося (рептилии): ");
         String name = read.nextLine();
-        System.out.println("Введите размер пресмыкающегося(рептилии) в сантиметрах: ");
+        System.out.println("Введите размер пресмыкающегося (рептилии) в сантиметрах: ");
         double size = inputNumDouble();
         System.out.println("Введите хищность пресмыкающегося (рептилии) (да/нет): ");
         String $predatory = read.nextLine();
         Reptile reptile = new Reptile(name, size, $predatory);
         Reptile.reptiles.add(reptile);
-        System.out.println("Добавлено пресмыкающееся(рептилия) с параметрами:\n" + reptile);
+        System.out.println("Добавлено пресмыкающееся (рептилия) с параметрами:\n" + reptile);
     }
 
     public void addAmphibian() {
@@ -255,15 +254,14 @@ public class doAnimals {
     public static double inputNumDouble() {
         double numDouble;
         try {
-            if (read.hasNextDouble()) {
-                numDouble = read.nextDouble();
+            numDouble = read.nextDouble();
+            if (read.hasNextLine()) {
                 read.nextLine();
-            } else throw new InputMismatchException("!!! Неправильный ввод числа !!!");
+            }
         } catch (InputMismatchException e) {
             read.nextLine();
             System.out.println("!!! Неправильный ввод числа !!!");
             System.out.println("Введите заново: ");
-            read.nextLine();
             numDouble = inputNumDouble();
         }
         return numDouble;
@@ -303,7 +301,7 @@ public class doAnimals {
                 break;
             }
         }
-        if (!exists) System.out.println("Такая птица не найдёна");
+        if (!exists) System.out.println("Такая птица не найдена");
     }
 
     public void removeMammal() {
@@ -325,7 +323,7 @@ public class doAnimals {
                 break;
             }
         }
-        if (!exists) System.out.println("Такое млекопитающее не найдёно");
+        if (!exists) System.out.println("Такое млекопитающее не найдено");
     }
 
     public void removeReptile() {
@@ -347,7 +345,7 @@ public class doAnimals {
                 break;
             }
         }
-        if (!exists) System.out.println("Такое пресмыкающееся (рептилия) не найдёно");
+        if (!exists) System.out.println("Такое пресмыкающееся (рептилия) не найдено");
     }
 
     public void removeAmphibian() {
@@ -369,7 +367,7 @@ public class doAnimals {
                 break;
             }
         }
-        if (!exists) System.out.println("Такое земноводное (амфибия) не найдёно");
+        if (!exists) System.out.println("Такое земноводное (амфибия) не найдено");
     }
 
     public void removeFish() {
@@ -391,7 +389,7 @@ public class doAnimals {
                 break;
             }
         }
-        if (!exists) System.out.println("Такая рыба не найдёна");
+        if (!exists) System.out.println("Такая рыба не найдена");
     }
 
     public void changeBird() {
@@ -416,7 +414,7 @@ public class doAnimals {
                 break;
             }
         }
-        if (!exists) System.out.println("Такая птица не найдёна");
+        if (!exists) System.out.println("Такая птица не найдена");
     }
 
     public void changeMammal() {
@@ -441,7 +439,7 @@ public class doAnimals {
                 break;
             }
         }
-        if (!exists) System.out.println("Такое млекопитающего не найдёно");
+        if (!exists) System.out.println("Такое млекопитающее не найдено");
     }
 
     public void changeReptile() {
@@ -466,7 +464,7 @@ public class doAnimals {
                 break;
             }
         }
-        if (!exists) System.out.println("Такое пресмыкающегося (рептилия) не найдёно");
+        if (!exists) System.out.println("Такое пресмыкающееся (рептилия) не найдено");
     }
 
     public void changeAmphibian() {
@@ -491,7 +489,7 @@ public class doAnimals {
                 break;
             }
         }
-        if (!exists) System.out.println("Такаое земноводное (амфибия) не найдёно");
+        if (!exists) System.out.println("Такаое земноводное (амфибия) не найдено");
     }
 
     public void changeFish() {
@@ -516,48 +514,55 @@ public class doAnimals {
                 break;
             }
         }
-        if (!exists) System.out.println("Такая рыба не найдёна");
+        if (!exists) System.out.println("Такая рыба не найдена");
     }
 
-    public void displayBird(){
+    public void displayBird() {
+        System.out.println("Птицы: ");
         for (Bird obj : Bird.birds) {
             System.out.println(obj);
         }
+        if (Bird.birds.isEmpty()) System.out.println("Отсутствуют");
     }
 
-    public void displayMammal(){
+    public void displayMammal() {
+        System.out.println("Млекопитающие: ");
         for (Mammal obj : Mammal.mammals) {
             System.out.println(obj);
         }
+        if (Mammal.mammals.isEmpty()) System.out.println("Отсутствуют");
     }
 
-    public void displayReptile(){
+    public void displayReptile() {
+        System.out.println("Пресмыкающиеся (рептилии): ");
         for (Reptile obj : Reptile.reptiles) {
             System.out.println(obj);
         }
+        if (Reptile.reptiles.isEmpty()) System.out.println("Отсутствуют");
     }
 
-    public void displayAmphibian(){
+    public void displayAmphibian() {
+        System.out.println("Земноводные (амфибии): ");
         for (Amphibian obj : Amphibian.amphibians) {
             System.out.println(obj);
         }
+        if (Amphibian.amphibians.isEmpty()) System.out.println("Отсутствуют");
     }
 
-    public void displayFish(){
+    public void displayFish() {
+        System.out.println("Рыбы: ");
         for (Fish obj : Fish.fish) {
             System.out.println(obj);
         }
+        if (Fish.fish.isEmpty()) System.out.println("Отсутствуют");
     }
-    public void displayAll(){
-        System.out.println("Вывод всех животных\nПтицы: ");
-        displayBird();
-        System.out.println("Млекопитающие: ");
-        displayMammal();
-        System.out.println("Пресмыкающиеся (рептилии): ");
-        displayReptile();
-        System.out.println("Земноводные (амфибии): ");
-        displayAmphibian();
-        System.out.println("Рыбы: ");
 
+    public void displayAll() {
+        System.out.println("Вывод всех животных: ");
+        displayBird();
+        displayMammal();
+        displayReptile();
+        displayAmphibian();
+        displayFish();
     }
 }

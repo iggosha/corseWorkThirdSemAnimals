@@ -2,12 +2,13 @@ package main.java;
 
 import java.util.*;
 
+
 //Абстрактный класс животные
 public abstract class Animals {
     static Scanner read = new Scanner(System.in);
     private String name;
     private double sizeCentimeter;
-    private boolean predatory;
+    public boolean predatory;
     private String $predatory;
 
     //Конструктор c параметрами
@@ -17,10 +18,9 @@ public abstract class Animals {
         this.$predatory = $predatory;
         try {
             if ($predatory.equals("Да") || $predatory.equals("да")) this.predatory = true;
-            else if ($predatory.equals("Нет")|| $predatory.equals("нет")) this.predatory = false;
+            else if ($predatory.equals("Нет") || $predatory.equals("нет")) this.predatory = false;
             else throw new IllegalArgumentException("Неправильно введено хищничество");
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("Введённый параметр хищничества не соответствует да/нет");
             System.out.println("Измените параметр с помощью команды меню №3");
         }
@@ -52,25 +52,22 @@ public abstract class Animals {
         this.sizeCentimeter = sizeCentimeter;
     }
 
-    public boolean getPredatory() {
-        return predatory;
+    public String get$predatory() {
+        return $predatory;
     }
-    public String get$predatory(){return $predatory;}
-    public void set$predatory(String $predatory) throws IllegalArgumentException{
+
+    public void set$predatory(String $predatory) throws IllegalArgumentException {
         try {
             if ($predatory.equals("Да") || $predatory.equals("да")) {
                 this.$predatory = $predatory;
                 this.predatory = true;
-            }
-            else if ($predatory.equals("Нет") || $predatory.equals("нет")) {
+            } else if ($predatory.equals("Нет") || $predatory.equals("нет")) {
                 this.$predatory = $predatory;
                 this.predatory = false;
-            }
-            else
+            } else
                 throw new IllegalArgumentException("Введён неправильный аргумент хищничества");
 
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("Введён неправильный аргумент хищничества");
             System.out.println("Введите хищничество заново (да/нет)");
             set$predatory(read.nextLine());
@@ -88,7 +85,6 @@ public abstract class Animals {
 
 //Птицы
 class Bird extends Animals {
-
     public static List<Bird> birds = new ArrayList<>();
 
     //Конструктор с параметрами
@@ -98,11 +94,9 @@ class Bird extends Animals {
             if (sizeCentimeter < 5.7 || sizeCentimeter > 363.0) {
                 throw new IllegalArgumentException("Введён неправильный размер");
             }
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("Введённый размер не соответствует размеру настоящей птицы");
             System.out.println("Измените размер с помощью команды меню №3");
-
         }
     }
 
@@ -115,11 +109,17 @@ class Bird extends Animals {
 //Млекопитающие
 class Mammal extends Animals {
     public static List<Mammal> mammals = new ArrayList<>();
+
     //Конструктор c параметрами
     public Mammal(String name, double sizeCentimeter, String $predatory) throws IllegalArgumentException {
         super(name, sizeCentimeter, $predatory);
-        if (sizeCentimeter < 3.8 || sizeCentimeter > 2450.0) {
-            throw new IllegalArgumentException("Введён неправильный размер");
+        try {
+            if (sizeCentimeter < 3.8 || sizeCentimeter > 2450.0) {
+                throw new IllegalArgumentException("Введён неправильный размер");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Введённый размер не соответствует размеру настоящего млекопитающего");
+            System.out.println("Измените размер с помощью команды меню №3");
         }
     }
 
@@ -132,11 +132,18 @@ class Mammal extends Animals {
 //Пресмыкающиеся
 class Reptile extends Animals {
     public static List<Reptile> reptiles = new ArrayList<>();
+
     //Конструктор c параметрами
     public Reptile(String name, double sizeCentimeter, String $predatory) throws IllegalArgumentException {
         super(name, sizeCentimeter, $predatory);
-        if (sizeCentimeter < 1.8 || sizeCentimeter > 600.0) {
-            throw new IllegalArgumentException("Введён неправильный размер");
+        try {
+            if (sizeCentimeter < 1.8 || sizeCentimeter > 600.0) {
+                throw new IllegalArgumentException("Введён неправильный размер");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Введённый размер не соответствует размеру настоящего пресмыкающегося (рептилии)");
+            System.out.println("Измените размер с помощью команды меню №3");
+
         }
     }
 
@@ -153,8 +160,14 @@ class Amphibian extends Animals {
     //Конструктор c параметрами
     public Amphibian(String name, double sizeCentimeter, String $predatory) throws IllegalArgumentException {
         super(name, sizeCentimeter, $predatory);
-        if (sizeCentimeter < 0.8 || sizeCentimeter > 180.0) {
-            throw new IllegalArgumentException("Введён неправильный размер");
+        try {
+            if (sizeCentimeter < 0.8 || sizeCentimeter > 180.0) {
+                throw new IllegalArgumentException("Введён неправильный размер");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Введённый размер не соответствует размеру настоящего земноводного (амфибии)");
+            System.out.println("Измените размер с помощью команды меню №3");
+
         }
     }
 
@@ -168,11 +181,18 @@ class Amphibian extends Animals {
 //Рыбы
 class Fish extends Animals {
     public static List<Fish> fish = new ArrayList<>();
+
     //Конструктор c параметрами
     public Fish(String name, double sizeCentimeter, String $predatory) throws IllegalArgumentException {
         super(name, sizeCentimeter, $predatory);
-        if (sizeCentimeter < 0.79 || sizeCentimeter > 2000.0) {
-            throw new IllegalArgumentException("Введён неправильный размер");
+        try {
+            if (sizeCentimeter < 0.79 || sizeCentimeter > 2000.0) {
+                throw new IllegalArgumentException("Введён неправильный размер");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Введённый размер не соответствует размеру настоящей рыбы");
+            System.out.println("Измените размер с помощью команды меню №3");
+
         }
     }
 
