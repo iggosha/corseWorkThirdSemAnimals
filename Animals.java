@@ -34,25 +34,6 @@ public abstract class Animals {
         this.$predatory = "Нет";
     }
 
-    //Питаться, для травоядных (без требуемого объекта)
-    public void eat() {
-        if (getPredatory()) {
-            System.out.println("Для хищного животного требуется другое животное");
-        } else {
-            System.out.println("Животное ест растение...");
-        }
-    }
-
-    //Питаться, для хищных
-    //Проверка на вид(свой-чужой), размер
-    public void eat(Animals animal) {
-        if (getPredatory()) {
-            System.out.println("Животное ест: " + animal.getName() + "...");
-        } else {
-            System.out.println("Текущее животное не хищное");
-        }
-    }
-
 
     public String getName() {
         return name;
@@ -74,11 +55,6 @@ public abstract class Animals {
     public boolean getPredatory() {
         return predatory;
     }
-
-    public void setPredatory(boolean predatory) {
-        this.predatory = predatory;
-    }
-
     public String get$predatory(){return $predatory;}
     public void set$predatory(String $predatory) throws IllegalArgumentException{
         try {
@@ -105,7 +81,7 @@ public abstract class Animals {
 
     @Override
     public String toString() {
-        return "Название: " + name + " Размер животного, см: " + sizeCentimeter + " Хищное: " + $predatory;
+        return "Название: " + name + ", Размер животного, см: " + sizeCentimeter + ", Хищное: " + $predatory;
     }
 }
 
