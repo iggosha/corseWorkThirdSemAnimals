@@ -14,8 +14,8 @@ public class doAnimals {
         System.out.println("3. Изменить параметры животного");
         System.out.println("4. Отобразить животных");
         System.out.println("5. Сохранить данные в XML");
-        System.out.println("6. Открыть данные из XML");
-        System.out.println("7. Завершить работу программы");
+        System.out.println("6. Получить данные из XML");
+        System.out.println("7. Завершить работу c меню");
         numChoiceMenu = inputNumInt();
         switch (numChoiceMenu) {
             //Добавление
@@ -171,12 +171,17 @@ public class doAnimals {
                 break;
             //Сохранить в XML
             case 5:
+                Main.writeToXML();
+                showMenu();
                 break;
             //Прочитать XML
             case 6:
+                Main.readFromXML();
+                showMenu();
                 break;
             //Завершить программу
             case 7:
+                System.out.println("Работа с меню завершена");
                 break;
             //Неправильный ввод
             default: {
@@ -193,8 +198,8 @@ public class doAnimals {
         System.out.println("Введите размер птицы в сантиметрах: ");
         double size = inputNumDouble();
         System.out.println("Введите хищность птицы (да/нет): ");
-        String $predatory = read.nextLine();
-        Bird bird = new Bird(name, size, $predatory);
+        String predatoryYN = read.nextLine();
+        Bird bird = new Bird(name, size, predatoryYN);
         Bird.birds.add(bird);
         System.out.println("Добавлена птица с параметрами:\n" + bird);
     }
@@ -206,8 +211,8 @@ public class doAnimals {
         System.out.println("Введите размер млекопитающего в сантиметрах: ");
         double size = inputNumDouble();
         System.out.println("Введите хищность млекопитающего (да/нет): ");
-        String $predatory = read.nextLine();
-        Mammal mammal = new Mammal(name, size, $predatory);
+        String predatoryYN = read.nextLine();
+        Mammal mammal = new Mammal(name, size, predatoryYN);
         Mammal.mammals.add(mammal);
         System.out.println("Добавлено млекопитающее с параметрами:\n" + mammal);
     }
@@ -219,8 +224,8 @@ public class doAnimals {
         System.out.println("Введите размер пресмыкающегося (рептилии) в сантиметрах: ");
         double size = inputNumDouble();
         System.out.println("Введите хищность пресмыкающегося (рептилии) (да/нет): ");
-        String $predatory = read.nextLine();
-        Reptile reptile = new Reptile(name, size, $predatory);
+        String predatoryYN = read.nextLine();
+        Reptile reptile = new Reptile(name, size, predatoryYN);
         Reptile.reptiles.add(reptile);
         System.out.println("Добавлено пресмыкающееся (рептилия) с параметрами:\n" + reptile);
     }
@@ -232,8 +237,8 @@ public class doAnimals {
         System.out.println("Введите размер земноводного (амфибии) в сантиметрах: ");
         double size = inputNumDouble();
         System.out.println("Введите хищность земноводного (амфибии) (да/нет): ");
-        String $predatory = read.nextLine();
-        Amphibian amphibian = new Amphibian(name, size, $predatory);
+        String predatoryYN = read.nextLine();
+        Amphibian amphibian = new Amphibian(name, size, predatoryYN);
         Amphibian.amphibians.add(amphibian);
         System.out.println("Добавлено земноводное (амфибия) с параметрами:\n" + amphibian);
     }
@@ -245,8 +250,8 @@ public class doAnimals {
         System.out.println("Введите размер рыбы в сантиметрах: ");
         double size = inputNumDouble();
         System.out.println("Введите хищность рыбы (да/нет): ");
-        String $predatory = read.nextLine();
-        Fish fish = (new Fish(name, size, $predatory));
+        String predatoryYN = read.nextLine();
+        Fish fish = (new Fish(name, size, predatoryYN));
         Fish.fish.add(fish);
         System.out.println("Добавлена рыба с параметрами:\n" + fish);
     }
@@ -292,9 +297,9 @@ public class doAnimals {
         System.out.println("Введите размер птицы: ");
         double size = inputNumDouble();
         System.out.println("Введите хищность птицы (да/нет): ");
-        String $predatory = read.nextLine();
+        String predatoryYN = read.nextLine();
         for (Bird obj : Bird.birds) {
-            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.get$predatory().equals($predatory)) {
+            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.getPredatoryYN().equals(predatoryYN)) {
                 exists = true;
                 System.out.println("Удалена птица с параметрами:" + obj);
                 Bird.birds.remove(obj);
@@ -313,10 +318,10 @@ public class doAnimals {
         System.out.println("Введите размер млекопитающего: ");
         double size = inputNumDouble();
         System.out.println("Введите хищность млекопитающего (да/нет): ");
-        String $predatory = read.nextLine();
+        String predatoryYN = read.nextLine();
         read.skip("");
         for (Mammal obj : Mammal.mammals) {
-            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.get$predatory().equals($predatory)) {
+            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.getPredatoryYN().equals(predatoryYN)) {
                 exists = true;
                 System.out.println("Удалено млекопитающее с параметрами:" + obj);
                 Mammal.mammals.remove(obj);
@@ -335,10 +340,10 @@ public class doAnimals {
         System.out.println("Введите размер пресмыкающегося (рептилии): ");
         double size = inputNumDouble();
         System.out.println("Введите хищность пресмыкающегося (рептилии) (да/нет): ");
-        String $predatory = read.nextLine();
+        String predatoryYN = read.nextLine();
         read.skip("");
         for (Reptile obj : Reptile.reptiles) {
-            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.get$predatory().equals($predatory)) {
+            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.getPredatoryYN().equals(predatoryYN)) {
                 exists = true;
                 System.out.println("Удалено пресмыкающееся (рептилия) с параметрами:" + obj);
                 Reptile.reptiles.remove(obj);
@@ -357,10 +362,10 @@ public class doAnimals {
         System.out.println("Введите размер земноводного (амфибии): ");
         double size = inputNumDouble();
         System.out.println("Введите хищность земноводного (амфибии): ");
-        String $predatory = read.nextLine();
+        String predatoryYN = read.nextLine();
         read.skip("");
         for (Amphibian obj : Amphibian.amphibians) {
-            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.get$predatory().equals($predatory)) {
+            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.getPredatoryYN().equals(predatoryYN)) {
                 exists = true;
                 System.out.println("Удалено земноводное (амфибия) с параметрами:" + obj);
                 Amphibian.amphibians.remove(obj);
@@ -379,10 +384,10 @@ public class doAnimals {
         System.out.println("Введите размер рыбы: ");
         double size = inputNumDouble();
         System.out.println("Введите хищность рыбы (да/нет): ");
-        String $predatory = read.nextLine();
+        String predatoryYN = read.nextLine();
         read.skip("");
         for (Fish obj : Fish.fish) {
-            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.get$predatory().equals($predatory)) {
+            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.getPredatoryYN().equals(predatoryYN)) {
                 exists = true;
                 System.out.println("Удалена рыба с параметрами:" + obj);
                 Fish.fish.remove(obj);
@@ -400,16 +405,16 @@ public class doAnimals {
         System.out.println("Введите размер птицы: ");
         double size = inputNumDouble();
         System.out.println("Введите хищность птицы (да/нет): ");
-        String $predatory = read.nextLine();
+        String predatoryYN = read.nextLine();
         for (Bird obj : Bird.birds) {
-            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.get$predatory().equals($predatory)) {
+            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.getPredatoryYN().equals(predatoryYN)) {
                 exists = true;
                 System.out.println("Введите желаемое название птицы: ");
                 obj.setName(read.nextLine());
                 System.out.println("Введите желаемый размер птицы: ");
                 obj.setSizeCentimeter(inputNumDouble());
                 System.out.println("Введите желаемую хищность птицы (да/нет): ");
-                obj.set$predatory(read.nextLine());
+                obj.setPredatoryYN(read.nextLine());
                 System.out.println("Параметры птицы изменены на: " + obj);
                 break;
             }
@@ -425,16 +430,16 @@ public class doAnimals {
         System.out.println("Введите размер млекопитающего: ");
         double size = inputNumDouble();
         System.out.println("Введите хищность млекопитающего (да/нет): ");
-        String $predatory = read.nextLine();
+        String predatoryYN = read.nextLine();
         for (Mammal obj : Mammal.mammals) {
-            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.get$predatory().equals($predatory)) {
+            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.getPredatoryYN().equals(predatoryYN)) {
                 exists = true;
                 System.out.println("Введите желаемое название млекопитающего: ");
                 obj.setName(read.nextLine());
                 System.out.println("Введите желаемый размер млекопитающего: ");
                 obj.setSizeCentimeter(inputNumDouble());
                 System.out.println("Введите желаемую хищность млекопитающего (да/нет): ");
-                obj.set$predatory(read.nextLine());
+                obj.setPredatoryYN(read.nextLine());
                 System.out.println("Параметры млекопитающего изменены на: " + obj);
                 break;
             }
@@ -450,16 +455,16 @@ public class doAnimals {
         System.out.println("Введите размер пресмыкающегося (рептилии): ");
         double size = inputNumDouble();
         System.out.println("Введите хищность пресмыкающегося (рептилии) (да/нет): ");
-        String $predatory = read.nextLine();
+        String predatoryYN = read.nextLine();
         for (Reptile obj : Reptile.reptiles) {
-            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.get$predatory().equals($predatory)) {
+            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.getPredatoryYN().equals(predatoryYN)) {
                 exists = true;
                 System.out.println("Введите желаемое название пресмыкающегося (рептилии): ");
                 obj.setName(read.nextLine());
                 System.out.println("Введите желаемый размер пресмыкающегося (рептилии): ");
                 obj.setSizeCentimeter(inputNumDouble());
                 System.out.println("Введите желаемую хищность пресмыкающегося (рептилии) (да/нет): ");
-                obj.set$predatory(read.nextLine());
+                obj.setPredatoryYN(read.nextLine());
                 System.out.println("Параметры пресмыкающегося (рептилии) изменены на: " + obj);
                 break;
             }
@@ -475,16 +480,16 @@ public class doAnimals {
         System.out.println("Введите размер земноводного (амфибии): ");
         double size = inputNumDouble();
         System.out.println("Введите хищность земноводного (амфибии) (да/нет): ");
-        String $predatory = read.nextLine();
+        String predatoryYN = read.nextLine();
         for (Amphibian obj : Amphibian.amphibians) {
-            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.get$predatory().equals($predatory)) {
+            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.getPredatoryYN().equals(predatoryYN)) {
                 exists = true;
                 System.out.println("Введите желаемое название земноводного (амфибии): ");
                 obj.setName(read.nextLine());
                 System.out.println("Введите желаемый размер земноводного (амфибии): ");
                 obj.setSizeCentimeter(inputNumDouble());
                 System.out.println("Введите желаемую хищность земноводного (амфибии) (да/нет): ");
-                obj.set$predatory(read.nextLine());
+                obj.setPredatoryYN(read.nextLine());
                 System.out.println("Параметры земноводного (амфибии) изменены на: " + obj);
                 break;
             }
@@ -500,16 +505,16 @@ public class doAnimals {
         System.out.println("Введите размер рыбы: ");
         double size = inputNumDouble();
         System.out.println("Введите хищность рыбы (да/нет): ");
-        String $predatory = read.nextLine();
+        String predatoryYN = read.nextLine();
         for (Fish obj : Fish.fish) {
-            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.get$predatory().equals($predatory)) {
+            if (obj.getName().equals(name) && obj.getSizeCentimeter() == size && obj.getPredatoryYN().equals(predatoryYN)) {
                 exists = true;
                 System.out.println("Введите желаемое название рыбы: ");
                 obj.setName(read.nextLine());
                 System.out.println("Введите желаемый размер рыбы: ");
                 obj.setSizeCentimeter(inputNumDouble());
                 System.out.println("Введите желаемую хищность рыбы (да/нет): ");
-                obj.set$predatory(read.nextLine());
+                obj.setPredatoryYN(read.nextLine());
                 System.out.println("Параметры рыбы изменены на: " + obj);
                 break;
             }

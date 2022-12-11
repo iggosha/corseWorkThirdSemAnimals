@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<animalsXML>
+    <allAnimals>
+        <allAnimals xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="bird">
+            <predatory>true</predatory>
+            <name>Орёл</name>
+            <predatoryYN>Да</predatoryYN>
+            <sizeCentimeter>206.6</sizeCentimeter>
+        </allAnimals>
+    </allAnimals>
+</animalsXML>

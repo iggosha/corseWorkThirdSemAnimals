@@ -1,24 +1,25 @@
 package main.java;
 
+import javax.xml.bind.annotation.*;
 import java.util.*;
 
-
 //Абстрактный класс животные
+@XmlRootElement
 public abstract class Animals {
     static Scanner read = new Scanner(System.in);
     private String name;
     private double sizeCentimeter;
     public boolean predatory;
-    private String $predatory;
+    private String predatoryYN;
 
     //Конструктор c параметрами
-    public Animals(String name, double sizeCentimeter, String $predatory) {
+    public Animals(String name, double sizeCentimeter, String predatoryYN) {
         this.name = name;
         this.sizeCentimeter = sizeCentimeter;
-        this.$predatory = $predatory;
+        this.predatoryYN = predatoryYN;
         try {
-            if ($predatory.equals("Да") || $predatory.equals("да")) this.predatory = true;
-            else if ($predatory.equals("Нет") || $predatory.equals("нет")) this.predatory = false;
+            if (predatoryYN.equals("Да") || predatoryYN.equals("да")) this.predatory = true;
+            else if (predatoryYN.equals("Нет") || predatoryYN.equals("нет")) this.predatory = false;
             else throw new IllegalArgumentException("Неправильно введено хищничество");
         } catch (IllegalArgumentException e) {
             System.out.println("Введённый параметр хищничества не соответствует да/нет");
@@ -31,10 +32,10 @@ public abstract class Animals {
         this.name = "";
         this.sizeCentimeter = 0.0;
         this.predatory = false;
-        this.$predatory = "Нет";
+        this.predatoryYN = "Нет";
     }
 
-
+    @XmlElement
     public String getName() {
         return name;
     }
@@ -44,6 +45,7 @@ public abstract class Animals {
     }
 
 
+    @XmlElement
     public double getSizeCentimeter() {
         return sizeCentimeter;
     }
@@ -52,25 +54,25 @@ public abstract class Animals {
         this.sizeCentimeter = sizeCentimeter;
     }
 
-    public String get$predatory() {
-        return $predatory;
+    @XmlElement
+    public String getPredatoryYN() {
+        return predatoryYN;
     }
 
-    public void set$predatory(String $predatory) throws IllegalArgumentException {
+    public void setPredatoryYN(String predatoryYN) throws IllegalArgumentException {
         try {
-            if ($predatory.equals("Да") || $predatory.equals("да")) {
-                this.$predatory = $predatory;
+            if (predatoryYN.equals("Да") || predatoryYN.equals("да")) {
+                this.predatoryYN = predatoryYN;
                 this.predatory = true;
-            } else if ($predatory.equals("Нет") || $predatory.equals("нет")) {
-                this.$predatory = $predatory;
+            } else if (predatoryYN.equals("Нет") || predatoryYN.equals("нет")) {
+                this.predatoryYN = predatoryYN;
                 this.predatory = false;
-            } else
-                throw new IllegalArgumentException("Введён неправильный аргумент хищничества");
+            } else throw new IllegalArgumentException("Введён неправильный аргумент хищничества");
 
         } catch (IllegalArgumentException e) {
             System.out.println("Введён неправильный аргумент хищничества");
             System.out.println("Введите хищничество заново (да/нет)");
-            set$predatory(read.nextLine());
+            setPredatoryYN(read.nextLine());
         }
 
     }
@@ -78,18 +80,20 @@ public abstract class Animals {
 
     @Override
     public String toString() {
-        return "Название: " + name + ", Размер животного, см: " + sizeCentimeter + ", Хищное: " + $predatory;
+        return "Название: " + name + ", Размер животного, см: " + sizeCentimeter + ", Хищное: " + predatoryYN;
     }
 }
 
 
 //Птицы
+@XmlRootElement
 class Bird extends Animals {
+
     public static List<Bird> birds = new ArrayList<>();
 
     //Конструктор с параметрами
-    public Bird(String name, double sizeCentimeter, String $predatory) {
-        super(name, sizeCentimeter, $predatory);
+    public Bird(String name, double sizeCentimeter, String predatoryYN) {
+        super(name, sizeCentimeter, predatoryYN);
         try {
             if (sizeCentimeter < 5.7 || sizeCentimeter > 363.0) {
                 throw new IllegalArgumentException("Введён неправильный размер");
@@ -107,12 +111,13 @@ class Bird extends Animals {
 }
 
 //Млекопитающие
+@XmlRootElement
 class Mammal extends Animals {
     public static List<Mammal> mammals = new ArrayList<>();
 
     //Конструктор c параметрами
-    public Mammal(String name, double sizeCentimeter, String $predatory) throws IllegalArgumentException {
-        super(name, sizeCentimeter, $predatory);
+    public Mammal(String name, double sizeCentimeter, String predatoryYN) throws IllegalArgumentException {
+        super(name, sizeCentimeter, predatoryYN);
         try {
             if (sizeCentimeter < 3.8 || sizeCentimeter > 2450.0) {
                 throw new IllegalArgumentException("Введён неправильный размер");
@@ -130,12 +135,13 @@ class Mammal extends Animals {
 }
 
 //Пресмыкающиеся
+@XmlRootElement
 class Reptile extends Animals {
     public static List<Reptile> reptiles = new ArrayList<>();
 
     //Конструктор c параметрами
-    public Reptile(String name, double sizeCentimeter, String $predatory) throws IllegalArgumentException {
-        super(name, sizeCentimeter, $predatory);
+    public Reptile(String name, double sizeCentimeter, String predatoryYN) throws IllegalArgumentException {
+        super(name, sizeCentimeter, predatoryYN);
         try {
             if (sizeCentimeter < 1.8 || sizeCentimeter > 600.0) {
                 throw new IllegalArgumentException("Введён неправильный размер");
@@ -154,12 +160,13 @@ class Reptile extends Animals {
 }
 
 //Земноводные
+@XmlRootElement
 class Amphibian extends Animals {
     public static List<Amphibian> amphibians = new ArrayList<>();
 
     //Конструктор c параметрами
-    public Amphibian(String name, double sizeCentimeter, String $predatory) throws IllegalArgumentException {
-        super(name, sizeCentimeter, $predatory);
+    public Amphibian(String name, double sizeCentimeter, String predatoryYN) throws IllegalArgumentException {
+        super(name, sizeCentimeter, predatoryYN);
         try {
             if (sizeCentimeter < 0.8 || sizeCentimeter > 180.0) {
                 throw new IllegalArgumentException("Введён неправильный размер");
@@ -179,12 +186,13 @@ class Amphibian extends Animals {
 }
 
 //Рыбы
+@XmlRootElement
 class Fish extends Animals {
     public static List<Fish> fish = new ArrayList<>();
 
     //Конструктор c параметрами
-    public Fish(String name, double sizeCentimeter, String $predatory) throws IllegalArgumentException {
-        super(name, sizeCentimeter, $predatory);
+    public Fish(String name, double sizeCentimeter, String predatoryYN) throws IllegalArgumentException {
+        super(name, sizeCentimeter, predatoryYN);
         try {
             if (sizeCentimeter < 0.79 || sizeCentimeter > 2000.0) {
                 throw new IllegalArgumentException("Введён неправильный размер");
