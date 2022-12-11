@@ -1,21 +1,11 @@
 # courseWorkThirdSemAnimals
 
-Есть возможность: 
-- создавать объекты;
-- удалять объекты;
-- изменять характеристики объектов;
-- отображать список объектов;
-- сохранять/считывать текущее состояние объектов в формате XML
-
 Используется:
-- for each
-- exception: input checks
-- generic-collections: add/remove, object picking
-- toString override
-- class extensions w/ two constructors
-- abstract class
-- getters-setters
-- swich()case;
-- user menu
-- xml-write jaxb
-- xml-read jaxb 
+- Цикл for each
+- Обработка исключений (exception) для проверки корректности ввода
+- Generic коллекции с функциями поиска, добавления, удаления и изменения объеков
+- Создан toString, геттеры (getters) и сеттеры (setters)
+- Создан абстрактный класс
+- Реализованы классы-наследники с конструкторами с параметрами и без них
+- Swich() case для пользовательского меню
+- Запись и чтение XML-файла
