@@ -12,10 +12,10 @@ for each
 exception: input checks
 generic-collections: add/remove, object picking
 toString override
-class extensions w/ two constructors 
+class extensions w/ two constructors
+abstract class
 getters-setters
 swich()case;
 user menu
-
-in future:
-maven+xml
+xml-write jaxb
+xml-read jaxb 
